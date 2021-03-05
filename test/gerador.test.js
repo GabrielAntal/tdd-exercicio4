@@ -22,7 +22,7 @@ describe('Gerador',()=>{
     });
 
     test('teste faixa de 1000 ate 5000',()=>{
-        const g = new Gerador();
+        
         const cliente = {
             nome: 'Jim Carrey',
             salario:'2500.00',
@@ -46,7 +46,7 @@ describe('Gerador',()=>{
     });
 
     test('teste faixa maior que 5000',()=>{
-        const g = new Gerador();
+       
         const cliente = {
             nome: 'Guy-Manuel de Homem-Christo ',
             salario:'7500.00',
@@ -72,4 +72,20 @@ describe('Gerador',()=>{
        expect(props[3].total).toBeCloseTo(4200.00);
        expect(props[3].valorDaParcela).toBeCloseTo(210.00);
     });
+
+
+    test('teste com salario zero', ()=>{
+        const cliente = {
+            nome: 'João Grilo',
+            salario:'0.00',
+            valorDoEmprestimo:'100.00',
+            idade:21
+        }
+
+        expect(()=>{
+            const props = g.montarPropostas(cliente);
+        }).toThrow("Emprestimo Negado")
+
+    })
+
 });
