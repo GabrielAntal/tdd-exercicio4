@@ -88,4 +88,35 @@ describe('Gerador',()=>{
 
     })
 
+    test('teste com valor do emprestimo fora dos limites', ()=>{
+        const cliente = {
+            nome: 'John Travolta',
+            salario:'7000.00',
+            valorDoEmprestimo:'1000000.00',
+            idade:54
+        }
+
+
+       
+
+        expect(()=>{
+            const props = g.montarPropostas(cliente);
+        }).toThrow("Emprestimo Negado")
+
+    })
+
+    test('teste com idade nao permitida', ()=>{
+        const cliente = {
+            nome: 'Peter Parker',
+            salario:'900.00',
+            valorDoEmprestimo:'1500.00',
+            idade:16
+        } 
+        expect(()=>{
+            const props = g.montarPropostas(cliente);
+        }).toThrow("Emprestimo Negado")
+    })   
+
+       
+
 });
